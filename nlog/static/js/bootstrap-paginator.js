@@ -52,7 +52,7 @@
             var version = (options && options.bootstrapMajorVersion) ? options.bootstrapMajorVersion : $.fn.bootstrapPaginator.defaults.bootstrapMajorVersion,
                 id = this.$element.attr("id");
 
-            if (version === 2 && !this.$element.is("div")) {
+            if (version == 2 && !this.$element.is("div")) {
 
                 throw "in Bootstrap version 2 the pagination must be a div element. Or if you are using Bootstrap pagination 3. Please specify it in bootstrapMajorVersion in the option";
             } else if (version > 2 && !this.$element.is("ul")) {

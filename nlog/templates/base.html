@@ -4,14 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>bootstrap测试</title>
 <meta charset="utf-8" />
-<script src="../static/js/jquery.min.js"></script> 
+
+<link href="../static/css/bootstrap-combined.min.css" rel="stylesheet">
 <link href="../static/css/bootstrap.css" rel="stylesheet" />
 <link href="../static/css/fileinput.css" rel="stylesheet" />
-<!--<script src="../static/js/fileinput.js"></script> --> 
+<script src="../static/js/jquery.min.js"></script> 
+<script src="../static/js/fileinput.js"></script> 
 <!--<script src="../static/js/fileinput_locale_zh.js"></script>--> 
 <script src="../static/js/bootstrap.min.js"></script> 
+<script src="../static/js/bootstrap-paginator.js"></script> 
 <script src="../static/js/other.js"></script>
-<script src="../static/js/bootstrap-paginator.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
@@ -34,7 +36,7 @@
             <li><a href="#" data-toggle="modal" data-target="#changePwd">修改密码</a></li>
             <li><a href="#">切换用户</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">注销</a></li>
+            <li><a href="/logout/">注销</a></li>
           </ul>
         </li>
       </ul>
@@ -58,8 +60,8 @@
           </div>
           <div id="management" class="panel-collapse collapse">
             <ul class="list-group">
-              <li class="list-group-item"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;<a id="user_management" href="/user_profile/">用户管理</a></li>
-              <li class="list-group-item"><i class="glyphicon glyphicon-th"></i>&nbsp;&nbsp;<a id ="inside_management"href="/inside_assert/">内网管理</a></li>
+              <li class="list-group-item"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;<a id="user_management" class="active" href="/user_profile/">用户管理</a></li>
+              <li class="list-group-item"><i class="glyphicon glyphicon-th-list"></i>&nbsp;&nbsp;<a id="assert_inside_management" href="/assert_inside/1">内网管理</a></li>
               <li class="list-group-item"><a href="#">外网管理</a></li>
             </ul>
           </div>
@@ -115,5 +117,6 @@
   </div>
 </div>
 <!--模态框结束--> 
+
 </body>
 </html>

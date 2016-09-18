@@ -1,0 +1,10 @@
+<html>
+</head>
+	<title>首页</title>
+</head>
+<body>
+<h1>{{username}}</h1>
+<h1>登录成功</h1>
+<a href="http://192.168.5.150:8002/log">日志</a>
+</body>
+</html>

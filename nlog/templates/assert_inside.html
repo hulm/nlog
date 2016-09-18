@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+			
+			  <div>
+			  <p>
+              <button type="button" class="btn btn-success btn-sm">添加</button>
+			  <button type="button" class="btn btn-danger btn-sm" id="deleteid">删除</button>
+			  <button type="button" class="btn btn-danger btn-sm">修改</button>
+			  </p>
+			  </div>
+            
+                <div id="top_exa">
+                </div>
+				<table id="userlist" class="table table-bordered table-hover table-condensed">
+					<thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkall">全选</th>
+                            <th>部门</th>
+                            <th>编号</th>
+                            <th>类型</th>
+                            <th>型号</th>
+                            <th>品牌</th>
+                            <th>使用人</th>
+                            <th>位置</th>
+                            <th>删除</th>
+                            <th>修改</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        <tr>
+                            <td><input type="checkbox" name="admincheckbox" /></th>
+                            <td name="department">{{item.department}}</td>
+                            <td name="number">{{item.number}}</td>
+                            <td name="mach_type">{{item.mach_type}}</td>
+                            <td name="model">{{item.model}}</td>
+                            <td name="brand">{{item.brand}}</td>
+                            <td name="user">{{item.user}}</td>
+                            <td name="position">{{item.position}}</td>
+                            <td><button type="button" class="btn btn-danger btn-sm">删除</button></td>
+                            <td><button type="button" class="btn btn-warning btn-sm">修改</button></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+					
+				</table>
+                <div id="bottom_exa">
+                </div>
+				<script type="text/javascript">
+				$(function(){
+                    $('#management').addClass("in");
+                    $('#assert_inside_management').addClass("active btn btn-default");
+                    $("#deleteid").click(function(){
+                        var item=[];
+                        $("input[name='admincheckbox']").each(function(){
+                            var _this=$(this);
+                            if(_this.is(":checked"))
+                            {
+                            var p=_this.parent().siblings().html()
+                                item.push(p);
+                            }
+                        })
+                        console.log(item)
+                        var parameter=item.join(',');
+                        //console.log(parameter)
+                        $.ajax({
+                            url:"/delete/",
+                            type:'POST',
+                            async:false,
+                            data:{dat:parameter},
+                            success:function(){
+                                console.log("success")
+                            }
+                            })
+                        })
+                        
+                    })
+                    
+				var options = {
+                        alignment:"right",
+                        currentPage: {{page}},
+                        totalPages: {{pageCount}},
+                        numberOfPages:10,
+                        pageUrl: function(type, page, current){ 
+                            return "http://192.168.1.188:8002/assert_inside/"+page;
+                            }  
+                    }
+
+                    $('#top_exa').bootstrapPaginator(options);
+                    $('#bottom_exa').bootstrapPaginator(options);
+				</script>
+            
+{% endblock %}

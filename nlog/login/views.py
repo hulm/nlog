@@ -66,13 +66,14 @@ def importFile(request):
     return render_to_response('importData.html',{'data':data})
 
 
-def inside_assert(request,page):
+def assert_inside(request,page):
     username = request.session.get('login_user',None)
     if username:
         page=int(page)
         count=Assert.objects.all().count()
+        pageCount = count/15
         result=Assert.objects.all()[page*15:(page+1)*15]
-        ret = {'data':result,'count':count,'username':username}
-        return render_to_response('inside_assert.html',ret)
+        ret = {'data':result,'count':count,'username':username,'pageCount':pageCount,'page':page}
+        return render_to_response('assert_inside.html',ret)
     else:
         return  render_to_response('login.html')
