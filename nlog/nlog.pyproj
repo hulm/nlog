@@ -4,6 +4,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>nlog</Name>
     <RootNamespace>nlog</RootNamespace>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,11 +35,26 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="login\admin.py" />
+    <Compile Include="login\apps.py" />
+    <Compile Include="login\form.py" />
+    <Compile Include="login\migrations\0001_initial.py" />
+    <Compile Include="login\migrations\__init__.py" />
+    <Compile Include="login\models.py" />
+    <Compile Include="login\tests.py" />
+    <Compile Include="login\views.py" />
+    <Compile Include="login\__init__.py" />
     <Compile Include="manage.py" />
+    <Compile Include="nlog\views.py" />
     <Compile Include="nlog\__init__.py" />
     <Compile Include="nlog\settings.py" />
     <Compile Include="nlog\urls.py" />
     <Compile Include="nlog\wsgi.py" />
+    <Compile Include="script\DB_import.py" />
+    <Compile Include="script\db_util.py" />
+    <Compile Include="script\filetest.py" />
+    <Compile Include="script\log_to_db.py" />
+    <Compile Include="script\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -49,9 +66,31 @@
     <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
+    <Folder Include="login\" />
+    <Folder Include="login\migrations\" />
     <Folder Include="nlog\" />
+    <Folder Include="script\" />
+    <Folder Include="static\" />
+    <Folder Include="static\css\" />
+    <Folder Include="static\fonts\" />
+    <Folder Include="static\font\" />
+    <Folder Include="static\img\" />
+    <Folder Include="static\js\" />
+    <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="login\admin.pyc" />
+    <Content Include="login\form.pyc" />
+    <Content Include="login\migrations\0001_initial.pyc" />
+    <Content Include="login\migrations\__init__.pyc" />
+    <Content Include="login\models.pyc" />
+    <Content Include="login\views.pyc" />
+    <Content Include="login\__init__.pyc" />
+    <Content Include="nlog\settings.pyc" />
+    <Content Include="nlog\urls.pyc" />
+    <Content Include="nlog\views.pyc" />
+    <Content Include="nlog\wsgi.pyc" />
+    <Content Include="nlog\__init__.pyc" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
@@ -82,11 +121,59 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="script\DB_import.pyc" />
+    <Content Include="script\db_util.pyc" />
+    <Content Include="script\__init__.pyc" />
+    <Content Include="static\css\bootstrap-theme.css" />
+    <Content Include="static\css\bootstrap-theme.css.map" />
+    <Content Include="static\css\bootstrap-theme.min.css" />
+    <Content Include="static\css\bootstrap.css" />
+    <Content Include="static\css\bootstrap.css.map" />
+    <Content Include="static\css\bootstrap.min.css" />
+    <Content Include="static\css\fileinput.css" />
+    <Content Include="static\css\fileinput.min.css" />
+    <Content Include="static\css\signin.css" />
+    <Content Include="static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="static\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="static\font\bootstrap.min.css" />
+    <Content Include="static\font\signin.css" />
+    <Content Include="static\img\favicon.ico" />
+    <Content Include="static\img\loading.gif" />
+    <Content Include="static\js\bootstrap-paginator.js" />
+    <Content Include="static\js\bootstrap.js" />
+    <Content Include="static\js\bootstrap.min.js" />
+    <Content Include="static\js\fileinput.js" />
+    <Content Include="static\js\fileinput.min.js" />
+    <Content Include="static\js\ie-emulation-modes-warning.js" />
+    <Content Include="static\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="static\js\jquery.min.js" />
+    <Content Include="static\js\jquery-1.7.2.js" />
+    <Content Include="static\js\jquery-1.7.2.min.js" />
+    <Content Include="static\js\jquery-3.1.0.js" />
+    <Content Include="static\js\npm.js" />
+    <Content Include="static\js\other.js" />
+    <Content Include="templates\base.html" />
+    <Content Include="templates\base1.html" />
+    <Content Include="templates\current_time.html" />
+    <Content Include="templates\delete.html" />
+    <Content Include="templates\importData.html" />
+    <Content Include="templates\inside_assert.html" />
+    <Content Include="templates\index.html" />
+    <Content Include="templates\log.html" />
+    <Content Include="templates\login.html" />
+    <Content Include="templates\register.html" />
+    <Content Include="templates\user_profile.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">
       <SubType>WebBrowser</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\2.7" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+            <form enctype="multipart/form-data" method="POST" action="/importFile/"> 
+                    <input type="file" name="file" />
+                    <br /> 
+                    <input type="submit" value="上传文件" /> 
+            </form>
+			 <table border='1px'>
+                {% for key,value in reqMeta.items %}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                {% endfor %}
+             </table>
+{% endblock %}

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="/static/font/bootstrap.min.css" />
+    <link type="text/css" href="/static/font/signin.css" rel="stylesheet"/>
+
+    <script src="/static/js/ie-emulation-modes-warning.js"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" action="/login/" method="POST">
+        <h2 class="form-signin-heading">请注册</h2>
+        <label for="inputUsername" class="sr-only">UserName</label>
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="用户名" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password"  placeholder="密码" required>
+		<label for="inputEmail" class="sr-only">Email</label>
+        <input type="password" id="inputEmail" class="form-control" name="email"  placeholder="邮箱" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+      </form>
+
+    </div>
+    <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

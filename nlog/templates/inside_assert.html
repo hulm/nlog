@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+              <div>
+			  <p>
+              <button type="button" class="btn btn-success btn-sm">添加</button>
+			  <button type="button" class="btn btn-danger btn-sm" id="deleteid">删除</button>
+			  <button type="button" class="btn btn-danger btn-sm">修改</button>
+			  </p>
+			  </div>
+				<table id="userlist" class="table table-bordered table-hover table-condensed">
+					<thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkall">全选</th>
+                            <th>部门</th>
+                            <th>编号</th>
+                            <th>类型</th>
+                            <th>型号</th>
+                            <th>品牌</th>
+                            <th>使用人</th>
+                            <th>位置</th>
+                            <th>删除</th>
+                            <th>修改</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for items in data %}
+                        <tr>
+                            <td><input type="checkbox" name="admincheckbox" /></td>
+                            <td name="department">{{items.department}}</td>
+                            <td name="number">{{items.number}}</td>
+                            <td name="mach_type">{{items.type}}</td>
+                            <td name="model">{{items.model}}</td>
+                            <td name="brand">{{items.brand}}</td>
+                            <td name="user">{{items.user}}</td>
+                            <td name="position">{{items.position}}</td>
+                            <td><button type="button" class="btn btn-danger btn-sm">删除</button></td>
+                            <td><button type="button" class="btn btn-warning btn-sm">修改</button></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+					
+				</table>
+<nav>
+     <ul id="example"></ul>
+</nav>  
+
+    <script type='text/javascript'>
+        
+    </script>
+<script>
+    $(function(){
+        $("#management").addClass("in");
+        $("#inside_management").addClass("active btn btn-default");
+    })
+    var options = {
+        currentPage: 3,
+        totalPages: 10
+    }
+
+    $('#example').bootstrapPaginator(options);
+</script>
+{% endblock %}
