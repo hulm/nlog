@@ -9,7 +9,12 @@
 			  <button type="button" class="btn btn-danger btn-sm">修改</button>
 			  </p>
 			  </div>
-            
+                <div class="input-group">
+                  <input type="text" class="form-control">
+                  <div class="input-group-btn">
+                    <!-- Button and dropdown menu -->
+                  </div>
+                </div>
                 <div id="top_exa">
                 </div>
 				<table id="userlist" class="table table-bordered table-hover table-condensed">
@@ -34,7 +39,7 @@
                             <td><input type="checkbox" name="admincheckbox" /></th>
                             <td name="department">{{item.department}}</td>
                             <td name="number">{{item.number}}</td>
-                            <td name="mach_type">{{item.mach_type}}</td>
+                            <td name="mach_type">{{item.type}}</td>
                             <td name="model">{{item.model}}</td>
                             <td name="brand">{{item.brand}}</td>
                             <td name="user">{{item.user}}</td>
@@ -85,7 +90,7 @@
                         totalPages: {{pageCount}},
                         numberOfPages:10,
                         pageUrl: function(type, page, current){ 
-                            return "http://192.168.1.188:8002/assert_inside/"+page;
+                            return "http://192.168.5.61:8002/assert_inside/"+page;
                             }  
                     }
 

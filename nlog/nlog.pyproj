@@ -37,10 +37,12 @@
     <Compile Include="app\migrations\__init__.py" />
     <Compile Include="login\admin.py" />
     <Compile Include="login\apps.py" />
+    <Compile Include="login\DB_import.py" />
     <Compile Include="login\form.py" />
     <Compile Include="login\migrations\0001_initial.py" />
     <Compile Include="login\migrations\__init__.py" />
     <Compile Include="login\models.py" />
+    <Compile Include="login\searchDBCheck.py" />
     <Compile Include="login\tests.py" />
     <Compile Include="login\views.py" />
     <Compile Include="login\__init__.py" />
@@ -336,7 +338,7 @@
     <Content Include="templates\current_time.html" />
     <Content Include="templates\delete.html" />
     <Content Include="templates\importData.html" />
-    <Content Include="templates\index.html.bak" />
+    <Content Include="templates\searchCheck.html" />
     <Content Include="templates\inside_assert.html" />
     <Content Include="templates\index.html" />
     <Content Include="templates\log.html" />
