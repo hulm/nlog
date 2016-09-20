@@ -21,9 +21,9 @@
                             <th>搜索数据库状态</th>
                         </tr>
                     </thead>
-                    <tbody  id="searchres">
-                        <tr >
-                            <td></td>
+                    <tbody >
+                        <tr  id="searchres">
+                            
                         </tr>
                     </tbody>
 					
@@ -39,19 +39,19 @@
                         dataType: 'json',
                         success: function (data) {
                             //alert(data);
-                            console.log($("#searchres").html())
+                            //console.log($("#searchres").html())
+                            $("#searchres").empty();
                             for (i in data) {
                                 $("#searchres").html(function () {
-                                    if (data[i]['num']=="null"){
-                                        return $("#searchres").html()+"<td>" +"<strong style=\"+color:red\">"+ "host:" + data[i]['host'] + "port:" + data[i]['port'] + "dbname:" + data[i]['dbname'] + "num:" + data[i]['num'] + "</strong>"+"</td>";
+                                    if (data[i]['num']==null){
+                                        return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</strong>" + "</td></tr>";
                                     }
                                     else{
-                                        return $("#searchres").html()+"<td>" + "host:" + data[i]['host'] + "port:" + data[i]['port'] + "dbname:" + data[i]['dbname'] + "num:" + data[i]['num'] + "</td>";
+                                        return $("#searchres").html() + "<tr><td>" +"<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</td></tr>";
                                     }
                                     
                                 });
-                                console.log(data[i]['host']);
-                                console.log(data[i]['port']);
+                                console.log(data[i]['host'] + data[i]['port'] + data[i]['num']);
                              }
                         }
                     })
