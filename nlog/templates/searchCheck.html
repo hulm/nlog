@@ -7,18 +7,12 @@
 					<thead>
                         <tr>
                             <th>搜索数据库状态</th>
-                            
-                        
                         </tr>
                     </thead>
-                    <tbody>
-                        {% for item in data %}
-                        <tr>
-                            
-                            <td>{{item}}</td>
-                            
+                    <tbody  id="searchres">
+                        <tr >
+                            <td><button id="search" value="搜索">搜索</button></td>
                         </tr>
-                        {% endfor %}
                     </tbody>
 					
 				</table>
@@ -27,6 +21,30 @@
             $(function(){
                 $('#management').addClass("in");
                 $('#search_check_list').addClass("active btn btn-default");
+                $("#search").click(function () {
+                    $.ajax({
+                        url: "/searchDBCheck1/",
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            console.log($("#searchres").html())
+                            for (i in data) {
+                                $("#searchres").html(function () {
+                                    if (data[i]['num']=="null"){
+                                        return $("#searchres").html()+"<td>" +"<strong style=\"+color:red\">"+ "host:" + data[i]['host'] + "port:" + data[i]['port'] + "dbname:" + data[i]['dbname'] + "num:" + data[i]['num'] + "</strong>"+"</td>";
+                                    }
+                                    else{
+                                        return $("#searchres").html()+"<td>" + "host:" + data[i]['host'] + "port:" + data[i]['port'] + "dbname:" + data[i]['dbname'] + "num:" + data[i]['num'] + "</td>";
+                                    }
+                                    
+                                });
+                                console.log(data[i]['host']);
+                                console.log(data[i]['port']);
+                             }
+                        }
+                    })
+                })
+                
             })
     	</script>
 {% endblock %}

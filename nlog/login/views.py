@@ -8,11 +8,13 @@ from django.shortcuts import render_to_response,render,get_object_or_404
 from login.models import UserInfo,Assert
 from django.db import models
 import DB_import
+import json
+#from django.utils import simplejson
 def login(request):
     #username = UserInfo.objects.get(username=admin).username
     #password = UserInfo.objects.get(username=admin).password
     reqMeta = request.META
-    print reqMeta
+    #print reqMeta
     if request.method == "POST":
         uname = request.POST.get('username',None)
         pwd = request.POST.get('password',None)
@@ -81,6 +83,27 @@ def assert_inside(request,page):
 
 
 def searchDBCheck(request):
+    #hosts = ['172.16.8.22','172.16.8.26']
+    #dbs = ['ask','news','company','service','showb','solution','vip','quotation','allsite','snippets']
+    #ports = ['23022','23004','23038','23025','23001','23044','23029','23008','23000','23046']
+    #check_list=[]
+    #for host in hosts:
+    #    for dbitem in dbs:
+    #        port = int(ports[dbs.index(dbitem)])
+    #        dbconfig={'host':host,'user':'root','passwd':'','db':'','port':port}
+    #        db = DB_import.MySQLHelper(dbconfig)
+    #        sql1="select * from "+dbitem
+    #        resault = db.NoneExcuteQuerySQL(sql1)
+    #        #checkres = ("host %s,,ports%s,db:%s,num:%s") % (host,port,dbitem,resault)
+    #        checkres = {'host':host,'port':port,'dbname':dbitem,'num':resault}
+    #        check_list.append(checkres)
+    return render_to_response("searchCheck.html")
+    #ret = json.dumps(check_list)
+    #print ret
+    #return ret
+
+
+def searchDBCheck1(request):
     hosts = ['172.16.8.22','172.16.8.26']
     dbs = ['ask','news','company','service','showb','solution','vip','quotation','allsite','snippets']
     ports = ['23022','23004','23038','23025','23001','23044','23029','23008','23000','23046']
@@ -95,4 +118,6 @@ def searchDBCheck(request):
             #checkres = ("host %s,,ports%s,db:%s,num:%s") % (host,port,dbitem,resault)
             checkres = {'host':host,'port':port,'dbname':dbitem,'num':resault}
             check_list.append(checkres)
-    return render_to_response("searchCheck.html",{'data':check_list})
+    #return render_to_response("searchCheck.html",{'data':json.dumps(check_list)})
+    print check_list
+    return HttpResponse(json.dumps(check_list), content_type="application/json")
