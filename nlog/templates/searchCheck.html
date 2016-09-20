@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-           
+           <div class="input-group">
+                   <select id="hosts">
+                       <option>172.16.8.22</option>
+                       <option>172.16.8.26</option>
+                       <option>所有主机</option>
+                   </select>
+                     <select id="ports">
+                       <option>23001</option>
+                       <option>23038</option>
+                       <option>所有端口</option>
+                   </select>
+               <button id="search" value="搜索">测试</button>
+               </div>
 			<div>
 				<table id="searchCheckList" class="table table-bordered table-hover table-condensed">
 					<thead>
@@ -11,7 +23,7 @@
                     </thead>
                     <tbody  id="searchres">
                         <tr >
-                            <td><button id="search" value="搜索">搜索</button></td>
+                            <td></td>
                         </tr>
                     </tbody>
 					
