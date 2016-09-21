@@ -62,7 +62,8 @@
                             if (host != "allhost" && port != "allport") {
                                 $("#searchres").html(function () {
                                     if (data['num'] == null) {
-                                        return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data['host'] + "</td>" + "<td>" + "port:" + data['port'] + "</td>" + "<td>" + "dbname:" + data['dbname'] + "</td>" + "<td>" + "num:" + data['num'] + "</td>" + "</strong>" + "</td></tr>";
+                                        console.log($("#searchres").html())
+                                        return $("#searchres").html() + '<td><strong style="color:red">' + "host:" + data['host'] + "</strong></td>" + '<td><strong style="color:red">' + "port:" + data['port'] + "</strong></td>" + '<td><strong style="color:red">' + "dbname:" + data['dbname'] + "</strong></td>" + '<td><strong style="color:red">' + "num:" + data['num'] + "</strong></td>";
                                     }
                                     else {
                                         return $("#searchres").html() + "<tr><td>" + "<td>" + "host:" + data['host'] + "</td>" + "<td>" + "port:" + data['port'] + "</td>" + "<td>" + "dbname:" + data['dbname'] + "</td>" + "<td>" + "num:" + data['num'] + "</td>" + "</td></tr>";
@@ -75,10 +76,10 @@
                                 for (i in data) {
                                     $("#searchres").html(function () {
                                         if (data[i]['num'] == null) {
-                                            return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</strong>" + "</td></tr>";
+                                            return $("#searchres").html() + '<td><strong style="color:red">' + "host:" + data[i]['host'] + "</strong></td>" + '<td><strong style="color:red">' + "port:" + data[i]['port'] + "</strong></td>" + '<td><strong style="color:red">' + "dbname:" + data[i]['dbname'] + "</strong></td>" + '<td><strong style="color:red">' + "num:" + data[i]['num'] + "</strong></td>";
                                         }
                                         else {
-                                            return $("#searchres").html() + "<tr><td>" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</td></tr>";
+                                            return $("#searchres").html() + "<tr><td>"+ "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</tr>";
                                         }
 
                                     });
