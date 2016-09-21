@@ -121,3 +121,66 @@ def searchDBCheck1(request):
     #return render_to_response("searchCheck.html",{'data':json.dumps(check_list)})
     print check_list
     return HttpResponse(json.dumps(check_list), content_type="application/json")
+
+
+def searchDBCheck2(request):
+    hosts = ['172.16.8.22','172.16.8.26']
+    dbs = ['ask','news','company','service','showb','solution','vip','quotation','allsite','snippets']
+    ports = ['23022','23004','23038','23025','23001','23044','23029','23008','23000','23046']
+    db_ports = {'23008': 'quotation', '23046': 'snippets', '23044': 'solution', '23029': 'vip', '23000': 'allsite', '23001': 'showb', '23004': 'news', '23038': 'company', '23022': 'ask', '23025': 'service'}
+    check_list=[]
+    hostinfo = request.POST.get('host',None)
+    print hostinfo
+    portinfo = request.POST.get('port',None)
+    print portinfo
+    if hostinfo and portinfo:
+        if hostinfo != "allhost":
+            if portinfo == "allport":
+                 for port in ports:
+                     port = int(port)
+                     dbconfig={'host':hostinfo,'user':'root','passwd':'','db':'','port':port}
+                     db = DB_import.MySQLHelper(dbconfig)
+                     sql="select * from "+db_ports[str(port)]
+                     resault = db.NoneExcuteQuerySQL(sql)
+                     checkres = {'host':hostinfo,'port':port,'dbname':db_ports[str(port)],'num':resault}
+                     check_list.append(checkres)
+                 print json.dumps(check_list)
+                 return HttpResponse(json.dumps(check_list), content_type="application/json")
+            else:
+                 print db_ports[portinfo]
+                 port = int(portinfo)
+                 host = str(hostinfo)
+                 dbconfig={'host':host,'user':'root','passwd':'','db':'','port':port}
+                 db = DB_import.MySQLHelper(dbconfig)
+                 sql="select * from "+db_ports[portinfo]
+                 resault = db.NoneExcuteQuerySQL(sql)
+                 checkres = {'host':hostinfo,'port':port,'dbname':db_ports[portinfo],'num':resault}
+                 print json.dumps(checkres)
+                 return HttpResponse(json.dumps(checkres), content_type="application/json")
+        else:
+            if portinfo == "allport":
+                for host in hosts:
+                    for dbitem in dbs:
+                        port = int(ports[dbs.index(dbitem)])
+                        dbconfig={'host':host,'user':'root','passwd':'','db':'','port':port}
+                        db = DB_import.MySQLHelper(dbconfig)
+                        sql="select * from "+dbitem
+                        resault = db.NoneExcuteQuerySQL(sql)
+                        #checkres = ("host %s,,ports%s,db:%s,num:%s") % (host,port,dbitem,resault)
+                        checkres = {'host':host,'port':port,'dbname':dbitem,'num':resault}
+                        check_list.append(checkres)
+                #return render_to_response("searchCheck.html",{'data':json.dumps(check_list)})
+                print check_list
+                print hostinfo,portinfo
+                return HttpResponse(json.dumps(check_list), content_type="application/json")
+            else:
+                for host in hosts:
+                    port = int(portinfo)
+                    dbconfig={'host':host,'user':'root','passwd':'','db':'','port':port}
+                    db = DB_import.MySQLHelper(dbconfig)
+                    sql="select * from "+db_ports[portinfo]
+                    resault = db.NoneExcuteQuerySQL(sql)
+                    #checkres = ("host %s,,ports%s,db:%s,num:%s") % (host,port,dbitem,resault)
+                    checkres = {'host':host,'port':port,'dbname':db_ports[portinfo],'num':resault}
+                    check_list.append(checkres)
+                return HttpResponse(json.dumps(check_list), content_type="application/json")

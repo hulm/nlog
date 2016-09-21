@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from nlog.views import current_time,log
-from login.views import login,index,register,delete,user_profile,logout,importFile,assert_inside,searchDBCheck,searchDBCheck1
+from login.views import login,index,register,delete,user_profile,logout,importFile,assert_inside,searchDBCheck,searchDBCheck1,searchDBCheck2
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^time/', current_time),
@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^assert_inside/(?P<page>\d+)',assert_inside),
     url(r'^searchDBCheck/',searchDBCheck),
     url(r'^searchDBCheck1/',searchDBCheck1),
+    url(r'^searchDBCheck2/',searchDBCheck2),
     #url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': 'E:\\bootstraptest\\nlog\\templates'}),
 ]

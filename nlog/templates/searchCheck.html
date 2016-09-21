@@ -5,12 +5,20 @@
                    <select id="hosts">
                        <option>172.16.8.22</option>
                        <option>172.16.8.26</option>
-                       <option>所有主机</option>
+                       <option>allhost</option>
                    </select>
                      <select id="ports">
+                       <option>23000</option>
                        <option>23001</option>
+                       <option>23022</option>
                        <option>23038</option>
-                       <option>所有端口</option>
+                       <option>23004</option>
+                       <option>23025</option>
+                       <option>23044</option>
+                       <option>23029</option>
+                       <option>23029</option>
+                       <option>23046</option>
+                       <option>allport</option>
                    </select>
                <button id="search" value="搜索">测试</button>
                </div>
@@ -34,25 +42,49 @@
                 $('#management').addClass("in");
                 $('#search_check_list').addClass("active btn btn-default");
                 $("#search").click(function () {
+                    host = $("#hosts").val();
+                    port = $("#ports").val();
+                    console.log(host)
+                    console.log(port)
+                    var item=[]
                     $.ajax({
-                        url: "/searchDBCheck1/",
+                        url: "/searchDBCheck2/",
+                        type:"POST",
                         dataType: 'json',
+                        data: { 
+                            'host': host,
+                            'port': port
+                        },
                         success: function (data) {
                             //alert(data);
                             //console.log($("#searchres").html())
                             $("#searchres").empty();
-                            for (i in data) {
+                            if (host != "allhost" && port != "allport") {
                                 $("#searchres").html(function () {
-                                    if (data[i]['num']==null){
-                                        return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</strong>" + "</td></tr>";
+                                    if (data['num'] == null) {
+                                        return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data['host'] + "</td>" + "<td>" + "port:" + data['port'] + "</td>" + "<td>" + "dbname:" + data['dbname'] + "</td>" + "<td>" + "num:" + data['num'] + "</td>" + "</strong>" + "</td></tr>";
                                     }
-                                    else{
-                                        return $("#searchres").html() + "<tr><td>" +"<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</td></tr>";
+                                    else {
+                                        return $("#searchres").html() + "<tr><td>" + "<td>" + "host:" + data['host'] + "</td>" + "<td>" + "port:" + data['port'] + "</td>" + "<td>" + "dbname:" + data['dbname'] + "</td>" + "<td>" + "num:" + data['num'] + "</td>" + "</td></tr>";
                                     }
-                                    
+
                                 });
-                                console.log(data[i]['host'] + data[i]['port'] + data[i]['num']);
-                             }
+                                console.log(data['host'] + data['port'] + data['num']);
+                            }
+                            else {
+                                for (i in data) {
+                                    $("#searchres").html(function () {
+                                        if (data[i]['num'] == null) {
+                                            return $("#searchres").html() + "<tr><td>" + "<strong style=\"color:red\">" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</strong>" + "</td></tr>";
+                                        }
+                                        else {
+                                            return $("#searchres").html() + "<tr><td>" + "<td>" + "host:" + data[i]['host'] + "</td>" + "<td>" + "port:" + data[i]['port'] + "</td>" + "<td>" + "dbname:" + data[i]['dbname'] + "</td>" + "<td>" + "num:" + data[i]['num'] + "</td>" + "</td></tr>";
+                                        }
+
+                                    });
+                                    console.log(data[i]['host'] + data[i]['port'] + data[i]['num']);
+                                }
+                            }
                         }
                     })
                 })
