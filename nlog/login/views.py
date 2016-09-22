@@ -10,6 +10,7 @@ from django.db import models
 import DB_import
 import json
 #from django.utils import simplejson
+#登陆页面
 def login(request):
     #username = UserInfo.objects.get(username=admin).username
     #password = UserInfo.objects.get(username=admin).password
@@ -24,6 +25,8 @@ def login(request):
         else:
             return render_to_response('login.html',{'msg':"用户名或密码错误"})
     return render(request,'login.html')
+
+#注销退出页面
 def logout(request):
     if request.session.get('login_user'):
         del request.session['login_user']
@@ -31,7 +34,9 @@ def logout(request):
     else:
         return render_to_response('login.html')
     
-    
+
+
+#用户管理
 def user_profile(request):
     username = request.session.get('login_user')
     if username:
@@ -42,17 +47,18 @@ def user_profile(request):
         return render_to_response('user_profile.html',{'user_list':data,'username':username})
     else:
         return render_to_response('login.html')
-    
+
+#删除视图
 def delete(request):
     if request.method == "POST":
         postdata = request.POST
-        print postdata['dat'].split(',')[0]
-        print postdata['dat'].split(',')[1]
+        print postdata['assert_number']
+        Assert.objects.get(number= postdata['assert_number']).delete()
     #print request.POST.get(dat)
         return render_to_response('delete.html',{'postdata':postdata})
 
 
-
+#首页
 def index(request):
     username = request.session.get('login_user',None)
     if username:
@@ -68,7 +74,7 @@ def importFile(request):
     data = f.readlines()
     return render_to_response('importData.html',{'data':data})
 
-
+#内网资产管理
 def assert_inside(request,page):
     username = request.session.get('login_user',None)
     if username:
@@ -122,7 +128,7 @@ def searchDBCheck1(request):
     print check_list
     return HttpResponse(json.dumps(check_list), content_type="application/json")
 
-
+#搜索数据库测试是否有数据 异步返回数据
 def searchDBCheck2(request):
     hosts = ['172.16.8.22','172.16.8.26']
     dbs = ['ask','news','company','service','showb','solution','vip','quotation','allsite','snippets']

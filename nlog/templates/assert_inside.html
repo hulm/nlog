@@ -28,7 +28,7 @@
                             <th>位置</th>
                             <th>删除</th>
                             <th>修改</th>
-                        
+                            <th>保存</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +42,9 @@
                             <td name="brand">{{item.brand}}</td>
                             <td name="user">{{item.user}}</td>
                             <td name="position">{{item.position}}</td>
-                            <td><button type="button" class="btn btn-danger btn-sm">删除</button></td>
-                            <td><button type="button" class="btn btn-warning btn-sm">修改</button></td>
+                            <td class="delete"><button type="button" class="btn btn-danger btn-sm">删除</button></td>
+                            <td class="change"><button type="button" class="btn btn-warning btn-sm">修改</button></td>
+                            <td class="save"><button type="button" class="btn btn-warning btn-sm">保存</button></td>
                             
                         </tr>
                         {% endfor %}
@@ -54,46 +55,54 @@
                 </div>
 				<script type="text/javascript">
 				$(function(){
-                    $('#management').addClass("in");
-                    $('#assert_inside_management').addClass("active btn btn-default");
-                    $("#deleteid").click(function(){
-                        var item=[];
-                        $("input[name='admincheckbox']").each(function(){
-                            var _this=$(this);
-                            if(_this.is(":checked"))
-                            {
-                            var p=_this.parent().siblings().html()
-                                item.push(p);
-                            }
-                        })
-                        console.log(item)
-                        var parameter=item.join(',');
-                        //console.log(parameter)
-                        $.ajax({
+                    //删除方法
+                    $('.delete button').click(function(){
+                       number =  $(this).parent().parent().find("[name='number']").text();
+                       if(confirm("确定要删除数据吗")){
+                            $(this).parent().parent().remove();
+                            $.ajax({
                             url:"/delete/",
                             type:'POST',
-                            async:false,
-                            data:{dat:parameter},
+                            data:{'assert_number':number},
                             success:function(){
-                                console.log("success")
+                                console.log("删除成功")
                             }
                             })
-                        })
-                        
+                        }
+                       else{
+                       }
                     })
-                    
-				var options = {
-                        alignment:"right",
-                        currentPage: {{page}},
-                        totalPages: {{pageCount}},
-                        numberOfPages:10,
-                        pageUrl: function(type, page, current){ 
-                            return "http://localhost/assert_inside/"+page;
-                            }  
-                    }
 
-                    $('#top_exa').bootstrapPaginator(options);
-                    $('#bottom_exa').bootstrapPaginator(options);
+                    //修改按钮方法
+                       $('.change button').click(function(){
+                        $(this).text("保存");
+                       department =  $(this).parent().parent().find("[name='department']").text();
+                       user =  $(this).parent().parent().find("[name='user']").text();
+                       position =  $(this).parent().parent().find("[name='position']").text();
+                        console.log(department);
+                        $(this).parent().parent().find("[name='department']").replaceWith("<input type=\"text\" value="+department+" name=\"department\">");
+                    })
+
+
+                    //侧边栏添加样式
+                    $('#management').addClass("in");
+                    $('#assert_inside_management').addClass("active btn btn-default");
+
+                    //分页功能
+				    var options = {
+                            alignment:"right",
+                            currentPage: {{page}},
+                            totalPages: {{pageCount}},
+                            numberOfPages:10,
+                            pageUrl: function(type, page, current){ 
+                                return "http://localhost/assert_inside/"+page;
+                                }  
+                        }
+
+                        $('#top_exa').bootstrapPaginator(options);
+                        $('#bottom_exa').bootstrapPaginator(options);
+
+                    })
 				</script>
             
 {% endblock %}
