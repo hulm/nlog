@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nlog',
 	'USER': 'root',
-    'HOST': '192.168.1.150'
+    'HOST': '192.168.0.235'
     }
 }
 

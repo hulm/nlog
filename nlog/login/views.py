@@ -103,7 +103,12 @@ def searchDBCheck(request):
     #        #checkres = ("host %s,,ports%s,db:%s,num:%s") % (host,port,dbitem,resault)
     #        checkres = {'host':host,'port':port,'dbname':dbitem,'num':resault}
     #        check_list.append(checkres)
-    return render_to_response("searchCheck.html")
+    username = request.session.get('login_user',None)
+    if username:
+        ret = {'username':username}
+        return render_to_response('searchCheck.html',ret)
+    else:
+        return render_to_response("login.html")
     #ret = json.dumps(check_list)
     #print ret
     #return ret
