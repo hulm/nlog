@@ -1,5 +1,5 @@
 ﻿
-# -*- coding: utf-8 -*- 
+# -*-coding:utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
@@ -195,3 +195,27 @@ def searchDBCheck2(request):
                     checkres = {'host':host,'port':port,'dbname':db_ports[portinfo],'num':resault}
                     check_list.append(checkres)
                 return HttpResponse(json.dumps(check_list), content_type="application/json")
+
+
+def assert_search(request):
+    username = request.session.get('login_user',None)
+    searchword = request.POST.get('searchword',None)
+    searchtype = request.POST.get('searchtype',None)
+    
+    searchtype = searchtype.encode('utf-8')
+    searchword = searchword.encode('utf-8')
+    
+    typedic = {'部门':'department','编号':'number','类型':'mach_type','型号':'model','品牌':'brand','使用人':'user','位置':'position'}
+    if username:
+        stype = typedic[searchtype]
+        querysql= ("%s__icontains=\"%s\"") % (stype,request.POST.get('searchword',None))
+        print querysql
+        data = Assert.objects.filter(department__icontains="%s" % searchword)
+        for item in data:
+            print item.department
+        #data = Assert.objects.filter(querysql) 
+        print data
+        ret = {'username':username}
+        return render_to_response('assert_inside.html',ret)
+    else:
+        return render_to_response("login.html")

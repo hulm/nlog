@@ -335,6 +335,7 @@
     <Content Include="templates\assert_inside.html" />
     <Content Include="templates\base.html" />
     <Content Include="templates\base1.html" />
+    <Content Include="templates\basetest.html" />
     <Content Include="templates\current_time.html" />
     <Content Include="templates\delete.html" />
     <Content Include="templates\importData.html" />

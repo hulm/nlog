@@ -9,9 +9,9 @@
 			          <button type="button" class="btn btn-danger btn-sm">修改</button>
 			      </p>
 			  </div>
-                <div >
+                <div id="searchdiv">
                     <input type="text" style="height:30px;margin:5px;">
-                    <select id="searchitem" style="width:70px;">
+                    <select id="searchselect" style="width:80px;">
                        <option>部门</option>
                        <option>编号</option>
                        <option>类型</option>
@@ -21,7 +21,7 @@
                        <option>位置</option>
                    </select>
                   
-                  <input type="submit" value="搜索" />
+                  <input type="button" id="searchbtn" value="搜索" />
                 </div>
                 <div id="top_exa">
                 </div>
@@ -123,6 +123,28 @@
                            
                             
                         }
+                        
+                    })
+
+
+                    //搜索功能
+                    
+                    $('#searchbtn').click(function(){
+                        searchword = $('#searchdiv input[type="text"]').val();
+                        searchtype = $('#searchselect').val();
+                        console.log(searchword)
+                        $.ajax({
+                            url:"http://localhost/assert_search/",
+                            type:"POST",
+                            data:{
+                                    'searchword':searchword,
+                                    'searchtype':searchtype
+                                },
+                            success: function (data) {
+                                    console.log("搜索成功！");
+                                }
+                        
+                        })
                         
                     })
 
